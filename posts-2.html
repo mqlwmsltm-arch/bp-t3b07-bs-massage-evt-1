@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 목록 (2/2) · t3b07-bs-massage-evt-1</title>
+  <meta name="description" content="t3b07-bs-massage-evt-1에 올라온 글 목록입니다.">
+  <link rel="canonical" href="https://mapo-shirt-guide.node-link.shop/posts-2.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+ /* RESET & BASE */
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ html { font-size: 16px; scroll-behavior: smooth; }
+ body {
+ font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+ background-color: #ffffff;
+ color: #111111;
+ line-height: 1.5;
+ -webkit-font-smoothing: antialiased;
+ }
+ a { color: #2563eb; text-decoration: none; }
+ a:hover { text-decoration: underline; }
+ img, svg { display: block; max-width: 100%; }
+ ul { list-style: none; }
+
+ /* CONTAINER */
+ .container {
+ max-width: 960px;
+ margin: 0 auto;
+ padding: 0 24px;
+ }
+
+ /* TYPOGRAPHY */
+ h1, h2, h3 {
+ font-weight: 700;
+ line-height: 1.2;
+ letter-spacing: -0.02em;
+ }
+ h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+ h2 { font-size: 1.75rem; margin-bottom: 0.75rem; }
+ h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+ p { margin-bottom: 1rem; }
+ .text-small { font-size: 0.875rem; }
+ .text-muted { opacity: 0.6; }
+
+ /* BUTTONS */
+ .btn {
+ display: inline-block;
+ padding: 12px 24px;
+ background: #111111;
+ color: #ffffff;
+ border: 2px solid #111111;
+ font-weight: 600;
+ font-size: 0.9rem;
+ cursor: pointer;
+ transition: all 0.2s ease;
+ text-align: center;
+ }
+ .btn:hover {
+ background: #ffffff;
+ color: #111111;
+ text-decoration: none;
+ }
+ .btn-accent {
+ background: #2563eb;
+ border-color: #2563eb;
+ color: #ffffff;
+ }
+ .btn-accent:hover {
+ background: #ffffff;
+ color: #2563eb;
+ border-color: #2563eb;
+ }
+ .btn-outline {
+ background: transparent;
+ color: #111111;
+ }
+ .btn-outline:hover {
+ background: #111111;
+ color: #ffffff;
+ }
+
+ /* HEADER / NAV */
+ .site-header {
+ border-bottom: 1px solid #111111;
+ padding: 16px 0;
+ position: sticky;
+ top: 0;
+ background: #ffffff;
+ z-index: 100;
+ }
+ .header-inner {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ }
+ .logo {
+ font-weight: 800;
+ font-size: 1.25rem;
+ letter-spacing: -0.03em;
+ }
+ .logo a { color: #111111; text-decoration: none; }
+ .nav-links {
+ display: flex;
+ gap: 24px;
+ align-items: center;
+ }
+ .nav-links a {
+ color: #111111;
+ font-weight: 500;
+ font-size: 0.9rem;
+ transition: opacity 0.2s;
+ }
+ .nav-links a:hover { opacity: 0.6; text-decoration: none; }
+ .hamburger {
+ display: none;
+ flex-direction: column;
+ gap: 5px;
+ cursor: pointer;
+ background: none;
+ border: none;
+ padding: 4px;
+ }
+ .hamburger span {
+ display: block;
+ width: 24px;
+ height: 2px;
+ background: #111111;
+ transition: all 0.3s;
+ }
+ #nav-toggle { display: none; }
+
+ /* HERO */
+ .hero {
+ padding: 80px 0 64px;
+ border-bottom: 1px solid #111111;
+ }
+ .hero-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 40px;
+ align-items: center;
+ }
+ .hero-visual {
+ aspect-ratio: 4 / 3;
+ background: #111111;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-size: 5rem;
+ color: #ffffff;
+ border: 1px solid #111111;
+ }
+ .hero h1 { font-size: 2.8rem; margin-bottom: 1.25rem; }
+ .hero p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+ .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+ /* SECTIONS */
+ section {
+ padding: 40px 0;
+ border-bottom: 1px solid #111111;
+ }
+ section:last-of-type { border-bottom: none; }
+ .section-title {
+ font-size: 1.5rem;
+ margin-bottom: 24px;
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ }
+
+ /* CARD GRID */
+ .card-grid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 16px;
+ }
+ .card {
+ border: 1px solid #111111;
+ padding: 24px;
+ transition: all 0.2s ease;
+ background: #ffffff;
+ }
+ .card:hover {
+ border-color: #2563eb;
+ box-shadow: 0 2px 0 0 #2563eb;
+ }
+ .card h3 { font-size: 1.1rem; }
+ .card .price {
+ font-weight: 700;
+ font-size: 1.25rem;
+ margin: 8px 0;
+ }
+ .card .badge {
+ display: inline-block;
+ border: 1px solid #111111;
+ padding: 2px 10px;
+ font-size: 0.75rem;
+ font-weight: 600;
+ }
+
+ /* REVIEW */
+ .review-card {
+ border: 1px solid #111111;
+ padding: 24px;
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+ }
+ .review-meta {
+ display: flex;
+ justify-content: space-between;
+ font-size: 0.85rem;
+ }
+ .review-stars {
+ color: #111111;
+ letter-spacing: 2px;
+ }
+ .review-text {
+ font-style: normal;
+ line-height: 1.6;
+ }
+
+ /* ABOUT / INFO */
+ .info-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 24px;
+ }
+ .info-item {
+ border: 1px solid #111111;
+ padding: 24px;
+ }
+ .info-item strong {
+ display: block;
+ margin-bottom: 4px;
+ font-size: 0.85rem;
+ opacity: 0.6;
+ }
+
+ /* FOOTER */
+ .site-footer {
+ padding: 32px 0;
+ border-top: 1px solid #111111;
+ text-align: center;
+ font-size: 0.85rem;
+ color: #111111;
+ }
+ .footer-links {
+ display: flex;
+ justify-content: center;
+ gap: 24px;
+ margin-bottom: 16px;
+ }
+ .footer-links a { color: #111111; }
+
+ /* RESPONSIVE */
+ @media (max-width: 768px) {
+ .container { padding: 0 16px; }
+ h1 { font-size: 1.75rem; }
+ h2 { font-size: 1.4rem; }
+
+ .nav-links {
+ display: none;
+ flex-direction: column;
+ background: #ffffff;
+ position: absolute;
+ top: 100%;
+ left: 0;
+ right: 0;
+ padding: 16px 24px;
+ border-bottom: 1px solid #111111;
+ gap: 16px;
+ }
+ .hamburger { display: flex; }
+ #nav-toggle:checked ~ .nav-links { display: flex; }
+
+ .hero-grid {
+ grid-template-columns: 1fr;
+ gap: 24px;
+ }
+ .hero { padding: 48px 0 40px; }
+ .hero h1 { font-size: 2rem; }
+ .hero-visual { aspect-ratio: 3/2; }
+
+ .card-grid {
+ grid-template-columns: 1fr 1fr;
+ }
+ .info-grid {
+ grid-template-columns: 1fr;
+ }
+ section { padding: 32px 0; }
+ }
+
+ @media (max-width: 480px) {
+ .card-grid {
+ grid-template-columns: 1fr;
+ }
+ .hero-cta { flex-direction: column; }
+ .btn { width: 100%; text-align: center; }
+ }
+
+ /* UTILITY */
+ .gap-16 { gap: 16px; }
+ .mt-16 { margin-top: 16px; }
+ .mb-16 { margin-bottom: 16px; }
+ .flex { display: flex; }
+ .flex-wrap { flex-wrap: wrap; }
+ .align-center { align-items: center; }
+ .justify-between { justify-content: space-between; }
+ </style>
+  <meta property="og:title" content="글 목록 (2/2) · t3b07-bs-massage-evt-1">
+  <meta property="og:description" content="t3b07-bs-massage-evt-1에 올라온 글 목록입니다.">
+  <meta property="og:url" content="https://mapo-shirt-guide.node-link.shop/posts-2.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+ <div class="container header-inner">
+ <div class="logo"><a href="/">발산 마사지</a></div>
+ <input type="checkbox" id="nav-toggle" hidden>
+ <label for="nav-toggle" class="hamburger" aria-label="메뉴 열기">
+ 
+ </label>
+ <nav class="nav-links" aria-label="메인 네비게이션">
+ <a href="#event">이벤트</a>
+ <a href="#review">리뷰</a>
+ <a href="#info">정보</a>
+ 
+ </nav>
+ </div>
+ </header>
+    <main>
+      <h1>글 목록</h1>
+      <p>전체 39개 · 2/2 페이지</p>
+      <ul class="post-list">
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0299.html">발산 마사지 이벤트 정보를 활용한 마포 홍대 단체 가라오케 예약 가이드</a>
+        <p class="post-item__summary">단체 모임을 성공적으로 이끌기 위해서는 장소 선정, 인원 수용 가능 여부, 서비스 품질이라는 세 가지 필수 충족 조건이 우선되어야 합니다. 발산 마사지 이벤트 검색을 통해 얻은 편안함의 기준을 단체</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0122.html">발산 마사지 이벤트 활용법과 마곡 유흥 추천정보 확인하기</a>
+        <p class="post-item__summary">흔히 유흥 시설이라고 하면 이른 새벽까지 이어지는 혼란스러운 분위기만을 떠올리곤 하지만, 이는 마곡 지역의 실제 현장을 충분히 경험하지 못한 이들의 일반화된 오해일 수 있습니다. 낮 시간의 발산 마</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0123.html">발산 마사지 이벤트 찾다 발견한 합정 노래방 추천정보 정리</a>
+        <p class="post-item__summary">성공적인 노래방 방문을 위한 조건은 생각보다 간단합니다. 우선 방문 인원의 성격과 규모가 시설의 크기와 적절히 어우러져야 하며, 이동 동선과 접근성이 좋아야 합니다. 발산 마사지 이벤트 정보를 검색</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0124.html">발산 마사지 이벤트 궁금하면 연남 클럽 추천정보도 체크하자</a>
+        <p class="post-item__summary">여러분은 평소 여가를 계획할 때 어떤 기준을 가지고 장소를 선택하시나요? 아마 많은 분이 발산 마사지 이벤트 정보를 통해 자신만의 휴식처를 찾듯, 활기찬 밤을 위해 연남 클럽을 찾을 때도 명확한 선</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0125.html">발산 마사지 이벤트 정보 속 합정 셔츠룸 추천정보 확인하기</a>
+        <p class="post-item__summary">발산 마사지 이벤트 소식을 접하며 일상적인 피로 해소법을 찾다가도, 색다른 밤문화를 즐기기 위한 합정 셔츠룸에 관심을 두는 경우가 많습니다. 합정 지역의 유흥 문화를 올바르게 이해하려면 먼저 검증된</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0126.html">발산 마사지 이벤트 비교와 공덕 가라오케 추천정보 분석</a>
+        <p class="post-item__summary">건강을 위한 발산 마사지 이벤트 등을 찾아보는 것처럼, 건전한 여가를 위해 공덕 가라오케 추천정보를 찾는 분들이 늘고 있습니다. 유흥업소를 선택할 때는 가격 구조가 과도하게 복잡하지 않은지 대조해 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0127.html">발산 마사지 이벤트 실패 없는 상수 마사지 추천정보 활용</a>
+        <p class="post-item__summary">발산 마사지 이벤트 같은 프로모션을 찾다 보면 정작 예약 과정에서 많은 사람이 실수를 저지르곤 합니다. 상수 지역에서 마사지 샵을 방문할 때도 마찬가지로, 사전에 실패 지점을 정확히 인지하는 것이 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0128.html">발산 마사지 이벤트 찾는 분들을 위한 망원 노래방 추천정보</a>
+        <p class="post-item__summary">발산 마사지 이벤트 정보를 찾으며 힐링을 계획하는 분들께, 망원 노래방 추천정보는 지친 일상의 마무리를 위한 훌륭한 선택지가 됩니다. 즐거운 노래방 문화를 제대로 경험하기 위해서는 단순히 시설의 화</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0129.html">발산 마사지 이벤트 관련 홍대 노래방 추천정보 안내</a>
+        <p class="post-item__summary">친구들과 함께 저녁 시간을 보내다 보면 발산 마사지 이벤트 같은 프로모션 정보를 접하는 경우가 있습니다. 하지만 막상 홍대 인근에서 즐거운 마무리를 위해 적절한 장소를 찾으려면 어디로 가야 할지 고</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0130.html">발산 마사지 이벤트 비교를 통한 공덕 셔츠룸 추천정보</a>
+        <p class="post-item__summary">흔히 셔츠룸에 대해 오해하는 점은 그저 가격대만 높다는 편견이 지배적이라는 사실입니다. 발산 마사지 이벤트 등을 검색하다가 우연히 접하는 정보와는 달리, 실제 공덕 지역의 서비스업은 체계적인 예약 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0131.html">발산 마사지 이벤트와 비교하는 연남 유흥 추천정보</a>
+        <p class="post-item__summary">매장의 분위기, 접근성, 서비스의 질이라는 세 가지 충족 조건이 완성되어야 비로소 만족스러운 유흥이 가능해집니다. 발산 마사지 이벤트 같은 할인 행사를 찾는 것만큼이나 중요한 것이 바로 연남 지역의</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260722-0132.html">발산 마사지 이벤트 만큼 중요한 마곡 가라오케 추천정보</a>
+        <p class="post-item__summary">여러분은 오늘 밤 어떤 기준으로 장소를 선택하려고 하시나요? 발산 마사지 이벤트 같은 일회성 정보에 의존하기보다 정기적으로 검증된 장소를 찾고 싶지는 않으신가요? 마곡은 새로 형성된 상권인 만큼 깨</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/guide-002-vpmlxb.html">마사지 해결 방법 총정리</a>
+        <p class="post-item__summary">아, 진짜... 지난 겨울 서버실 온도가 42도까지 치솟았습니다. 그때 사장님이 어떻게 원가 계산과 마진율 분석에 대한 꿈을 꾸었는지, 그리고 단골 손님의 반응은 어떠했는지 들어보겠습니다.</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/juice-1.html">발산 마사지 이벤트 이용 안내</a>
+        <p class="post-item__summary">발산 지역에서 건강과 휴식을 위한 마사지 이벤트를 찾으시는 분들을 위한 안내입니다. 현대인의 바쁜 일상 속에서 마사지는 지친 몸과 마음에 활력을 불어넣고 피로를 해소하는 효과적인 방법으로 많은 이들</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/juice-2.html">발산 지역 마사지 이벤트 이용 안내</a>
+        <p class="post-item__summary">발산 지역 마사지 이벤트는 일상 속 피로를 풀고 신체에 활력을 불어넣는 좋은 방법입니다. 마사지는 근육 긴장 완화, 혈액 순환 개선 등 전반적인 건강 증진에 기여하며, 다양한 종류를 통해 개인의 스</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/normal-1.html">발산 마사지 이벤트 안내</a>
+        <p class="post-item__summary">최근 발산 지역을 중심으로 건강과 휴식을 목적으로 하는 다양한 마사지 이벤트가 진행되고 있습니다. 이러한 이벤트들은 바쁜 일상 속에서 쌓인 긴장을 풀고, 올바른 자세를 유지하며 신체 균형을 잡는 데</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/normal-2.html">발산 마사지 이벤트 안내</a>
+        <p class="post-item__summary">최근 많은 분들이 마사지의 중요성을 인식하고, 건강 관리를 위한 다양한 방법들을 찾고 있습니다. 특히 발산 지역에서는 특별한 마사지 이벤트를 통해 더 효과적인 피로 회복과 스트레스 해소를 할 수 있</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/normal-3.html">발산 지역 마사지 이벤트 정보 안내</a>
+        <p class="post-item__summary">바쁜 일상 속에서 피로를 해소하기 위해 많은 이들이 마사지 매장을 찾습니다. 특히 발산 지역은 다양한 요법을 제공하는 관리 매장이 밀집해 있어 선택의 폭이 넓습니다. 이 지역 매장들은 이용객을 유도</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/t3link-002-e171eg.html">발산 마사지 이벤트</a>
+        <p class="post-item__summary">일상에서 쌓인 피로와 스트레스를 효과적으로 해소하고 싶다면 발산 마사지 이벤트를 확인해 보는 것을 추천합니다. 바쁜 현대인들에게 마사지는 몸의 긴장을 풀어주고 마음의 안정을 되찾아주는 탁월한 방법 </p>
+      </li>
+      </ul>
+    <nav class="pager">
+      <a class="pager__link" href="posts.html">1</a>
+      <span class="pager__current">2</span>
+    </nav>
+    </main>
+  </div>
+</body>
+</html>
